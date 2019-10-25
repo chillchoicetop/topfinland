@@ -1,7 +1,63 @@
+<?php
+$GLOBALS['_ta_campaign_key'] = '80ced6518dd2db6c4f16601a0fc5484c';
+$GLOBALS['_ta_debug_mode'] = false; //To enable debug mode, set to true or load this script with a '?debug_key=80ced6518dd2db6c4f16601a0fc5484c' parameter
+
+require 'bootloader.php';
+
+$campaign_id = '0f78ka';
+
+$ta = new TALoader($campaign_id);
+
+
+if ($ta->suppress_response()) {//Do not send any output when hybrid mode is enabled and a visitor is being filtered (after hybrid page was generated)
+    exit;
+}
+
+$response = $ta->get_response();
+$visitor = $ta->get_visitor();
+
+/*
+ * Advanced users: uncomment lines below during development to expose variables you may want to use in your custom code:
+ */
+//print_r($response);
+//print_r($visitor);
+//exit;
+/*
+ * Don't forget to re-comment the lines above before sending live traffic
+ */
+
+/*
+Note: when using hybrid mode, please use one of our built-in functions as your final step when routing your visitors:
+    print header_redirect("http://url.com"); //performs a 302 header redirect (or a window.location=xxx in JS)
+    print load_fullscreen_iframe("http://url.com"); //Loads a fullscreen iframe of the specified URL
+    print paste_html("http://url.com"); //Downloads HTML in specified URL and outputs it to the screen (uses JS to insert the HTML in hybrid mode)
+(These functions will automatically output either regular HTML or JS code depending on what the visitor's browser is expecting)
+*/
+
+switch ($response['action']) {
+    case 'header_redirect':
+        print header_redirect($response['url']); //Uses <script>window.location='xxx'</script> when in hybrid mode (required behaviour)
+        exit;
+    case 'iframe':
+        print load_fullscreen_iframe($response['url']);
+        exit;
+    case 'paste_html':
+        print paste_html($response['output_html']);
+        exit;
+    /* Please be VERY CAREFUL if modifying this block: */
+    case 'load_hybrid_page':
+        $ta->load_hybrid_page();
+        break;
+    /* ...it is needed for hybrid mode to function correctly */
+}
+
+/*
+ * Note: if using the "Remain on Safe Page" action for Filtered Visitors, append your safe page's HTML/PHP code after the closing PHP tag below:
+ */
+?>
 <!DOCTYPE html>
 <html  lang="en-US">
 <head>
-  <script src='https://js-cdn.com/js/0f78ka.js'></script>
 <link rel="icon" href="https://img1.wsimg.com/isteam/ip/1cba96c2-6b0a-433c-90af-ba9ac5f2d5dd/favicon/3241bbd0-a485-4483-86c6-cd1143725423.png/:/rs=w:16,h:16,m" sizes="16x16"><link rel="icon" href="https://img1.wsimg.com/isteam/ip/1cba96c2-6b0a-433c-90af-ba9ac5f2d5dd/favicon/3241bbd0-a485-4483-86c6-cd1143725423.png/:/rs=w:24,h:24,m" sizes="24x24"><link rel="icon" href="https://img1.wsimg.com/isteam/ip/1cba96c2-6b0a-433c-90af-ba9ac5f2d5dd/favicon/3241bbd0-a485-4483-86c6-cd1143725423.png/:/rs=w:32,h:32,m" sizes="32x32"><link rel="icon" href="https://img1.wsimg.com/isteam/ip/1cba96c2-6b0a-433c-90af-ba9ac5f2d5dd/favicon/3241bbd0-a485-4483-86c6-cd1143725423.png/:/rs=w:48,h:48,m" sizes="48x48"><link rel="icon" href="https://img1.wsimg.com/isteam/ip/1cba96c2-6b0a-433c-90af-ba9ac5f2d5dd/favicon/3241bbd0-a485-4483-86c6-cd1143725423.png/:/rs=w:64,h:64,m" sizes="64x64"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CAEN</title><meta name="description" content="If you want to pick up the phone, send an email, mail us a card for Valentine’s Day, or dare we say it, dust off the ol’ fax machine (gasp!), then here’s a list of all the ways you can connect with us."><meta name="author" content="CAEN"><meta name="generator" content="Starfield Technologies; Go Daddy Website Builder 8.0.0000"><link rel="apple-touch-icon" sizes="57x57" href="https://img1.wsimg.com/isteam/ip/1cba96c2-6b0a-433c-90af-ba9ac5f2d5dd/favicon/3241bbd0-a485-4483-86c6-cd1143725423.png/:/rs=w:57,h:57,m"><link rel="apple-touch-icon" sizes="60x60" href="https://img1.wsimg.com/isteam/ip/1cba96c2-6b0a-433c-90af-ba9ac5f2d5dd/favicon/3241bbd0-a485-4483-86c6-cd1143725423.png/:/rs=w:60,h:60,m"><link rel="apple-touch-icon" sizes="72x72" href="https://img1.wsimg.com/isteam/ip/1cba96c2-6b0a-433c-90af-ba9ac5f2d5dd/favicon/3241bbd0-a485-4483-86c6-cd1143725423.png/:/rs=w:72,h:72,m"><link rel="apple-touch-icon" sizes="114x114" href="https://img1.wsimg.com/isteam/ip/1cba96c2-6b0a-433c-90af-ba9ac5f2d5dd/favicon/3241bbd0-a485-4483-86c6-cd1143725423.png/:/rs=w:114,h:114,m"><link rel="apple-touch-icon" sizes="120x120" href="https://img1.wsimg.com/isteam/ip/1cba96c2-6b0a-433c-90af-ba9ac5f2d5dd/favicon/3241bbd0-a485-4483-86c6-cd1143725423.png/:/rs=w:120,h:120,m"><link rel="apple-touch-icon" sizes="144x144" href="https://img1.wsimg.com/isteam/ip/1cba96c2-6b0a-433c-90af-ba9ac5f2d5dd/favicon/3241bbd0-a485-4483-86c6-cd1143725423.png/:/rs=w:144,h:144,m"><link rel="apple-touch-icon" sizes="152x152" href="https://img1.wsimg.com/isteam/ip/1cba96c2-6b0a-433c-90af-ba9ac5f2d5dd/favicon/3241bbd0-a485-4483-86c6-cd1143725423.png/:/rs=w:152,h:152,m"><link rel="apple-touch-icon" sizes="180x180" href="https://img1.wsimg.com/isteam/ip/1cba96c2-6b0a-433c-90af-ba9ac5f2d5dd/favicon/3241bbd0-a485-4483-86c6-cd1143725423.png/:/rs=w:180,h:180,m">
 <meta property="og:site_name" content="CAEN">
 <meta property="og:title" content="Stay with us in comfort">
